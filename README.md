@@ -1,2 +1,2 @@
-# ratio-music
-clean architecture, get song information(author, lyrics, ..)
+# ratio-music : demo projects
+clean architecture

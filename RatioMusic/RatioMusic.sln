@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34024.191
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution items", "{2AAAB255-1AA7-4F95-B701-0D198121DC39}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{01552EC1-FC85-4F76-9CDA-88F0AF89C82D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{8CED6C49-3804-4BC5-8ABC-C23EF2ED3394}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RatioMusic.Api", "src\RatioMusic.Api\RatioMusic.Api.csproj", "{89384EC3-54DA-484E-BC53-DF363944AA3D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RatioMusic.Domain", "src\RatioMusic.Domain\RatioMusic.Domain.csproj", "{809D4C40-948A-42E0-9181-E23B77B0A108}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RatioMusic.Application", "src\RatioMusic.Application\RatioMusic.Application.csproj", "{E4EB2472-5DF2-460B-8F06-B30ECB8C33DB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RatioMusic.Infrastructure", "src\RatioMusic.Infrastructure\RatioMusic.Infrastructure.csproj", "{90BEACC8-F260-4F32-B568-597621853873}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{89384EC3-54DA-484E-BC53-DF363944AA3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89384EC3-54DA-484E-BC53-DF363944AA3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89384EC3-54DA-484E-BC53-DF363944AA3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89384EC3-54DA-484E-BC53-DF363944AA3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{809D4C40-948A-42E0-9181-E23B77B0A108}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{809D4C40-948A-42E0-9181-E23B77B0A108}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{809D4C40-948A-42E0-9181-E23B77B0A108}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{809D4C40-948A-42E0-9181-E23B77B0A108}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4EB2472-5DF2-460B-8F06-B30ECB8C33DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4EB2472-5DF2-460B-8F06-B30ECB8C33DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4EB2472-5DF2-460B-8F06-B30ECB8C33DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4EB2472-5DF2-460B-8F06-B30ECB8C33DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90BEACC8-F260-4F32-B568-597621853873}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90BEACC8-F260-4F32-B568-597621853873}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90BEACC8-F260-4F32-B568-597621853873}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90BEACC8-F260-4F32-B568-597621853873}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{89384EC3-54DA-484E-BC53-DF363944AA3D} = {01552EC1-FC85-4F76-9CDA-88F0AF89C82D}
+		{809D4C40-948A-42E0-9181-E23B77B0A108} = {01552EC1-FC85-4F76-9CDA-88F0AF89C82D}
+		{E4EB2472-5DF2-460B-8F06-B30ECB8C33DB} = {01552EC1-FC85-4F76-9CDA-88F0AF89C82D}
+		{90BEACC8-F260-4F32-B568-597621853873} = {01552EC1-FC85-4F76-9CDA-88F0AF89C82D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {49232ECA-C395-4C62-8567-0E918037340D}
+	EndGlobalSection
+EndGlobal

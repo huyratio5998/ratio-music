@@ -8,61 +8,55 @@ namespace RatioMusic.Infrastructure.Implements
     public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
     {
         private readonly RatioMusicContext _context;
+        private readonly DbSet<T> _dbSet;
 
         public BaseRepository(RatioMusicContext context)
         {
             _context = context;
+            _dbSet = context.Set<T>();
         }
 
         public async Task<T> CreateAsync(T entity)
         {
-            await _context.Set<T>().AddAsync(entity);
+            entity.CreatedDate = DateTime.UtcNow;
+            entity.ModifiedDate = DateTime.UtcNow;
+            await _dbSet.AddAsync(entity);
             return entity;
         }
 
         public async Task<bool> DeleteAsync(int id)
         {
-            var T = await GetByIdAsync(id);
-            if (T == null) return false;
-
-            _context.Set<T>().Remove(T);
-            await _context.SaveChangesAsync();
+            var entity = await GetByIdAsync(id);
+            if (entity == null) return false;
+            
+            _dbSet.Remove(entity);            
 
             return true;
         }
 
         public IEnumerable<T> GetAll(bool isTracking = false)
         {
-            return isTracking ? _context.Set<T>() : _context.Set<T>().AsNoTracking();
+            return isTracking ? _dbSet : _dbSet.AsNoTracking();
         }
 
-        public async Task<T>? GetByIdAsync(int id, bool isTracking = true)
+        public async Task<T?> GetByIdAsync(int id, bool isTracking = true)
         {
-            if (id == 0) return null;
+            if (id == 0) return null!;
 
-            var T = isTracking ? await _context.Set<T>().FirstOrDefaultAsync(s => s.Id == id)
-                : await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(s => s.Id == id);
-            if (T == null) return null;
+            var entity = isTracking ? await _dbSet.FirstOrDefaultAsync(s => s.Id == id)
+                : await _dbSet.AsNoTracking().FirstOrDefaultAsync(s => s.Id == id);
+            if (entity == null) return null!;
 
-            return T;
+            return entity;
         }
 
-        public async Task<bool> UpdateAsync(T entity)
+        public bool Update(T entity)
         {
-            try
-            {
-                if (entity == null) return false;
+            if (entity == null) return false;
 
-                _context.Set<T>().Update(entity);
-                await _context.SaveChangesAsync();
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                // log error
-                return false;
-            }
+            entity.ModifiedDate = DateTime.UtcNow;
+            _dbSet.Update(entity);
+            return true;
         }
     }
 }

@@ -5,8 +5,8 @@ namespace RatioMusic.Application.Services
 {
     public interface ISongService
     {
-        Task<List<Song>> GetAllSongsAsync();
-        Task<Song> GetSongById(int id, bool isTracking = true);
+        Task<PagedResponse<SongViewModel>?> GetAllSongsAsync(SongQueryParams queryParams);
+        Task<Song?> GetSongById(int id, bool isTracking = true);
         
         Task<SongViewModel> CreateSongAsync(SongApiRequest newSong);
         Task<bool> UpdateSongAsync(SongApiRequest song);

@@ -29,40 +29,54 @@ namespace RatioMusic.Application.Services
         }
 
         public async Task<ArtistViewModel> CreateArtistAsync(ArtistApiRequest newArtistRequest)
-        {            
+        {
             try
             {
-                await _unitOfWork.CreateTransaction();
-                
                 var artistObj = await _unitOfWork.ArtistRepository.CreateAsync(_mapper.Map<Artist>(newArtistRequest));
-                
-                await _unitOfWork.Save();
-                await _unitOfWork.Commit();
-                
-                if (artistObj.Id == 0) return new ArtistViewModel();
-                
+                await _unitOfWork.SaveAsync();
+
+                if (artistObj == null || artistObj.Id == 0) return new ArtistViewModel();
                 var res = _mapper.Map<ArtistViewModel>(newArtistRequest);
                 res.Artist.Id = artistObj.Id;
 
                 return res;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                await _unitOfWork.Rollback();
                 return new ArtistViewModel();
-            }                        
+            }
         }
         
         public async Task<bool> UpdateArtistAsync(ArtistApiRequest Artist)
         {
-            var res = await _unitOfWork.ArtistRepository.UpdateAsync(_mapper.Map<Artist>(Artist));
+            try
+            {
+                var res = _unitOfWork.ArtistRepository.Update(_mapper.Map<Artist>(Artist));
+                if (!res) return false;
 
-            return res;
+                await _unitOfWork.SaveAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
         public async Task<bool> DeleteArtistAsync(int id)
         {
-            return await _unitOfWork.ArtistRepository.DeleteAsync(id);
+            try
+            {
+                var res = await _unitOfWork.ArtistRepository.DeleteAsync(id);
+                if(!res) return false;
+
+                await _unitOfWork.SaveAsync();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }            
         }        
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
 using RatioMusic.Application.Services;
+using RatioMusic.Application.ViewModels;
 
 namespace RatioMusic.Api.Controllers.V2
 {
@@ -19,11 +20,10 @@ namespace RatioMusic.Api.Controllers.V2
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetSong([FromQuery] SongQueryParams queryParams)
         {
-            var songs = await _songService.GetAllSongsAsync();
-            
-            if(!songs.Any() || songs == null) return NotFound();
+            var songs = await _songService.GetAllSongsAsync(queryParams);
+            if (songs == null || songs.Items == null || !songs.Items.Any()) return NotFound();
 
             return Ok(songs);
         }

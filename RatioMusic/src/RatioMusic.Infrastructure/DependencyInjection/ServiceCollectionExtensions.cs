@@ -9,6 +9,7 @@ namespace RatioMusic.Infrastructure.DependencyInjection
         public static IServiceCollection AddApplicationRepositoriesConfig(this IServiceCollection services)
         {            
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             return services;
         }

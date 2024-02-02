@@ -14,20 +14,10 @@ namespace RatioMusic.Infrastructure.Implements
             _context = context;
         }
 
-        public async Task<int> CreateAsync(T entity)
+        public async Task<T> CreateAsync(T entity)
         {
-            try
-            {
-                await _context.Set<T>().AddAsync(entity);
-                await _context.SaveChangesAsync();
-
-                return entity.Id;
-            }
-            catch (Exception ex)
-            {
-                // log error
-                return 0;
-            }
+            await _context.Set<T>().AddAsync(entity);
+            return entity;
         }
 
         public async Task<bool> DeleteAsync(int id)

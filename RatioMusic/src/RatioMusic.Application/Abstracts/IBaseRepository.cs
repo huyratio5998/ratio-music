@@ -7,7 +7,7 @@ namespace RatioMusic.Application.Abstracts
         IEnumerable<T> GetAll(bool isTracking = false);
         Task<T>? GetByIdAsync(int id, bool isTracking = true);
 
-        Task<int> CreateAsync(T Artist);
+        Task<T> CreateAsync(T Artist);
         Task<bool> UpdateAsync(T Artist);
         Task<bool> DeleteAsync(int id);        
     }

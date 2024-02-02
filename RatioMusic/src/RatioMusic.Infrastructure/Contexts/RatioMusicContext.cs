@@ -9,6 +9,24 @@ namespace RatioMusic.Infrastructure.Contexts
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Song>(entity =>
+            {
+                entity.HasIndex(x => new { x.Name, x.DisplayName }).IsClustered(false);
+            });
+
+            modelBuilder.Entity<Album>(entity =>
+            {
+                entity.HasIndex(x => x.Name).IsClustered(false);
+            });
+
+            modelBuilder.Entity<Artist>(entity =>
+            {
+                entity.HasIndex(x => x.Name).IsClustered(false);
+            });
+        }
+
         public DbSet<Album> Albums { get; set; }
         public DbSet<Song> Songs { get; set; }
         public DbSet<Artist> Artists { get; set; }
